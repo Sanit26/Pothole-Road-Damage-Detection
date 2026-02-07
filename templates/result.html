@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pothole Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background-color: #f3f4f6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 520px;
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        p {
+            margin: 0 0 25px;
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        input[type="file"] {
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #16a34a;
+        }
+
+        .result {
+            margin-top: 30px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+
+        .download {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🚧 Pothole Detection System</h1>
+    <p>Upload a road video to detect potholes using AI</p>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="video" accept="video/*" required>
+        <button type="submit">Detect Potholes</button>
+    </form>
+
+    {% if output_video %}
+    <div class="result">
+        <video controls autoplay muted>
+            <source src="{{ url_for('static', filename=output_video) }}" type="video/mp4">
+            Your browser does not support video playback.
+        </video>
+
+        <a class="download"
+           href="{{ url_for('static', filename=output_video) }}"
+           download>
+            ⬇ Download Output Video
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Pothole Detection Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1 class="title">🚧 AI Pothole Detection & Monitoring System</h1>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Original Road Footage</h2>
+        <video id="video1" muted playsinline>
+            <source src="{{ input_video }}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="card">
+        <h2>AI Detection Output</h2>
+        <video id="video2" muted playsinline>
+            <source src="{{ output_video }}" type="video/mp4">
+        </video>
+    </div>
+
+</div>
+
+<div class="count-box">
+    <h3>Total Potholes Detected</h3>
+    <p id="potholeCount">0</p>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
